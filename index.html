@@ -18,6 +18,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
 
@@ -31,13 +37,13 @@
           >
           <ul class="nav-list list">
             <li class="nav-list-item">
-              <a class="link" href="./index.html">Studio</a>
+              <a class="nav-link link active" href="./index.html">Studio</a>
             </li>
             <li class="nav-list-item">
-              <a class="link" href="./portfolio.html">Portfolio</a>
+              <a class="nav-link link" href="./portfolio.html">Portfolio</a>
             </li>
             <li class="nav-list-item">
-              <a class="link" href="">Contacts</a>
+              <a class="nav-link link" href="">Contacts</a>
             </li>
           </ul>
         </nav>
@@ -64,7 +70,9 @@
       <section class="slider">
         <div class="container">
           <h1 class="slider-title">Effective Solutions for Your Business</h1>
-          <button class="slider-btn btn" type="button">Order Service</button>
+          <button class="slider-btn btn" data-modal-open type="button">
+            Order Service
+          </button>
         </div>
       </section>
 
@@ -130,13 +138,28 @@
         <div class="container">
           <h2 class="doing-title title">What are we doing</h2>
           <ul class="doing-list list">
-            <li class="link doing-item">
+            <li
+              class="link doing-item"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+            >
               <img src="./images/i-mac.jpg" alt="Imac" width="360" />
             </li>
-            <li class="link doing-item">
+            <li
+              class="link doing-item"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+            >
               <img src="./images/iphone.jpg" alt="iphone" width="360" />
             </li>
-            <li class="link doing-item">
+            <li
+              class="link doing-item"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+            >
               <img
                 src="./images/iphone-and-laptop.jpg"
                 alt="iphone-and-laptop"
@@ -378,6 +401,18 @@
         </div>
       </section>
     </main>
+
+    <!-- Modal window -->
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button class="modal-close" type="button" data-modal-close>
+          <svg class="modal-close-svg">
+            <use href="./images/icons.svg#icon-vector"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -427,5 +462,11 @@
         </div>
       </div>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="./js/modal.js"></script>
+    8
   </body>
 </html>

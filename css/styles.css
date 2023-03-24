@@ -3,7 +3,7 @@
   --color-logo: #4d5ae5;
   --color-title-contrast: #ffffff;
   --color-active: #404bbf;
-  --color-success: #31D0AA;
+  --color-success: #404bbf;
   --color-text: #434455;
   --color-text-footer: #d9d9d9;
   --color-border-header: #d9d9d9;
@@ -18,6 +18,8 @@
   --bg-footer: #2e2f42;
   --bg-title: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7));
   --gap-photo: 24px;
+  --trans-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-time: 250ms;
 }
 
 body {
@@ -117,10 +119,15 @@ ul {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-logo);
+  transition: transform var(--animation-time) var(--trans-function);
 }
 
 .logo-part {
   color: var(--color-title);
+}
+
+.logo:is(:hover, :focus, :active) {
+  transform: scale(1.2);
 }
 
 .nav-list {
@@ -132,9 +139,50 @@ ul {
   gap: 40px;
 }
 
-.nav-list .link:hover,
-.nav-list .link:focus {
+.nav-list-item {
+  position: relative;
+  display: block;
+}
+
+.nav-link {
+  transition-property: color, text-shadow;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
+}
+
+.nav-link:is(:hover, :focus, :active) {
   color: var(--color-active);
+  text-shadow: 0 0 2px var(--color-active);
+}
+
+/* .nav-link::after {
+  content: '';
+  width: 100%;
+  height: 4px;
+  display: block;
+  position: absolute;
+  top: 44px;
+  background-color: var(--color-active);
+  border-radius: 2px;
+  transition-property: opacity;
+  transition-duration: 200ms;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link:is(:hover, :focus, :active)::after {
+  opacity: 1;
+} */
+
+.nav-link.active::after {
+  content: '';
+  width: 100%;
+  height: 4px;
+  display: block;
+  position: absolute;
+  top: 45px;
+  background-color: var(--color-active);
+  border-radius: 2px;
 }
 
 .address {
@@ -154,9 +202,15 @@ ul {
   color: var(--color-text);
 }
 
+.address-item {
+  display: block;
+  transition: transform var(--animation-time) var(--trans-function);
+}
+
 .address-item:hover,
 .address-item:focus {
   color: var(--color-active);
+  transform: scale(1.2);
 }
 
 /* ----------------SLIDER------------------ */
@@ -193,10 +247,17 @@ ul {
   color: var(--color-title-contrast);
   border-radius: 4px;
   border: none;
+  transition-property: background-color, transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
 }
 
 .slider-btn:is(:hover, :focus) {
   background-color: var(--bg-btn-active);
+}
+
+.slider-btn:active {
+  transform: translateY(5px);
 }
 
 /* ----------------OUR ADVANTAGES------------------ */
@@ -324,10 +385,14 @@ ul {
   align-items: center;
   background-color: var(--bg-btn-hero);
   border-radius: 50%;
+  transition-property: background-color, transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
 }
 
 .social-icon-link:is(:hover, :focus, :active) {
   background-color: var(--color-active);
+  transform: scale(1.05) rotate(360deg);
 }
 
 .social-icon-item {
@@ -366,11 +431,15 @@ ul {
   border: 1px solid var(--color-icon);
   border-radius: 4px;
   color: var(--color-icon);
+  transition-property: color, border, transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
 }
 
 .costumer-link:is(:hover, :focus, :active) {
   color: var(--bg-btn-hero);
-  border: 1px solid var(--bg-btn-hero)
+  border: 1px solid var(--bg-btn-hero);
+  transform: scale(1.05);
 }
 
 .costumer-item-icon {
@@ -428,10 +497,14 @@ ul {
   height: 40px;
   background-color: rgba(256, 256, 256, 0.10);
   border-radius: 50%;
+  transition-property: background-color, transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
 }
 
 .footer-link:is(:hover, :focus, :active) {
   background-color: var(--color-success);
+  transform: scale(1.05) rotate(360deg);
 }
 
 .footer-icon {
@@ -461,9 +534,12 @@ ul {
   background-color: var(--bg-btn-pf);
   border: 1px solid var(--color-border);
   border-radius: 4px;
+  transition-property: color, background-color, border, box-shadow, transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
 }
 
-.portfolio-nav-btn:is(:hover, :focus, :active) {
+.portfolio-nav-btn:is(:hover, :focus) {
   color: var(--color-title-contrast);
   background-color: var(--bg-btn-active);
   border: 1px solid var(--bg-btn-active);
@@ -471,6 +547,11 @@ ul {
     0px 3px 1px rgba(0, 0, 0, 0.1),
     0px 2px 1px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
+
+}
+
+.portfolio-nav-btn:active {
+  transform: translateY(5px);
 }
 
 .portfolio-list {
@@ -479,8 +560,31 @@ ul {
   gap: calc(var(--gap-photo) * 2) var(--gap-photo);
 }
 
+.portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
 .portfolio-item {
   width: calc((100% - 2 * var(--gap-photo)) / 3);
+}
+
+.portfolio-item:hover .portfolio-text-appear {
+  transform: translateY(0);
+}
+
+
+.portfolio-text-appear {
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  padding: 40px 32px;
+  position: absolute;
+  top: 0;
+  background-color: var(--bg-btn-hero);
+  color: var(--color-logo-ft);
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform var(--animation-time) var(--trans-function);
 }
 
 .portfolio-item-link.link:is(:hover, :focus, :active) {
@@ -498,4 +602,64 @@ ul {
 
 .portfolio-item-text {
   margin-top: 8px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(46, 47, 66, 0.4);
+  transition-property;
+  opacity,
+  visibility;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
+  /* transition-delay: 250ms; */
+
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0) rotate(0.5turn);
+}
+
+.modal {
+  position: absolute;
+  width: 408px;
+  min-height: 576px;
+  padding: 24px;
+  top: 50%;
+  left: 50%;
+  background-color: #FCFCFC;
+  border-radius: 4px;
+  transform: translate(-50%, -50%) scale(1) rotate(1turn);
+  transition-property: transform;
+  transition-duration: var(--animation-time);
+  transition-timing-function: var(--trans-function);
+}
+
+.modal-close {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  margin-left: auto;
+  background-color: #E7E9FC;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-close-svg {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }

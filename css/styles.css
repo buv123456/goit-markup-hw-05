@@ -119,7 +119,7 @@ ul {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-logo);
-  display: block;
+  display: inline-block;
   position: relative;
   transition: transform var(--animation-time) var(--trans-function);
 }
